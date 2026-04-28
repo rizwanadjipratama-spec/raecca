@@ -1,8 +1,13 @@
 <script setup lang="ts">
 import { ref, onMounted } from 'vue'
 import gsap from 'gsap'
+import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { Plus, Minus } from 'lucide-vue-next'
 import { useHead } from '#imports'
+
+if (process.client) {
+  gsap.registerPlugin(ScrollTrigger)
+}
 
 const sectionRef = ref<HTMLElement | null>(null)
 const openIndex = ref<number | null>(null)
@@ -55,15 +60,16 @@ useHead({
 
 onMounted(() => {
   const ctx = gsap.context(() => {
-    gsap.from('.faq-item', {
-      y: 30,
-      opacity: 0,
+    // Animate items IN
+    gsap.to('.faq-item', {
+      y: 0,
+      opacity: 1,
       duration: 0.8,
       stagger: 0.15,
       ease: 'power3.out',
       scrollTrigger: {
         trigger: sectionRef.value,
-        start: 'top 75%',
+        start: 'top 80%',
       }
     })
   }, sectionRef.value!)
@@ -87,7 +93,7 @@ onMounted(() => {
         <div 
           v-for="(faq, index) in faqs" 
           :key="index"
-          class="faq-item group bg-white/50 backdrop-blur-sm border border-brand-pink/20 rounded-2xl overflow-hidden transition-all duration-300 hover:border-brand-pink shadow-sm"
+          class="faq-item opacity-0 translate-y-8 group bg-white/50 backdrop-blur-sm border border-brand-pink/20 rounded-2xl overflow-hidden transition-all duration-300 hover:border-brand-pink shadow-sm"
         >
           <button 
             @click="toggleFaq(index)"
