@@ -48,18 +48,20 @@ onMounted(() => {
     gsap.to(liptint3.value, { y: '-=10', rotation: '-=4', duration: 4.5, repeat: -1, yoyo: true, ease: 'sine.inOut', delay: 1 })
 
     // Scroll Parallax Animation (applied to outer elements)
+    // Using exact 'y' pixel values instead of 'yPercent' guarantees the parallax 
+    // works flawlessly even if the images haven't fully downloaded and height is 0.
     gsap.to(parallax1.value, {
-      yPercent: -60,
+      y: -250,
       ease: 'none',
       scrollTrigger: { trigger: heroContainer.value, start: 'top top', end: 'bottom top', scrub: true }
     })
     gsap.to(parallax2.value, {
-      yPercent: -50,
+      y: -150,
       ease: 'none',
       scrollTrigger: { trigger: heroContainer.value, start: 'top top', end: 'bottom top', scrub: true }
     })
     gsap.to(parallax3.value, {
-      yPercent: -70,
+      y: -350,
       ease: 'none',
       scrollTrigger: { trigger: heroContainer.value, start: 'top top', end: 'bottom top', scrub: true }
     })
@@ -101,7 +103,7 @@ onMounted(() => {
       </div>
 
       <!-- 3D Parallax Products (Right side) -->
-      <div class="w-full md:w-1/2 relative h-[400px] md:h-[700px] mt-32 md:mt-0 flex items-center justify-center pointer-events-none z-20">
+      <div class="w-full md:w-1/2 relative h-[400px] md:h-[700px] mt-16 md:mt-0 flex items-center justify-center pointer-events-none z-20">
         
         <!-- Center Bounding Box for tight grouping -->
         <div class="relative w-full h-[500px] md:h-[600px] flex items-center justify-center -ml-12 md:-ml-32">
@@ -109,21 +111,21 @@ onMounted(() => {
           <!-- Back Liptint (Top Left) -->
           <div ref="parallax1" class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 -ml-16 -mt-32 md:-ml-24 md:-mt-48 w-[140px] md:w-[200px] z-10 opacity-90 blur-[1px]">
             <div ref="liptint1" class="w-full h-full rotate-[-15deg]">
-              <img src="/images/products/hero-liptint-1.png" alt="Raecca Lip Tint 1" class="w-full h-auto drop-shadow-xl" />
+              <img src="/images/products/hero-liptint-1.png" alt="Raecca Lip Tint 1" fetchpriority="high" class="w-full h-auto drop-shadow-xl" />
             </div>
           </div>
           
           <!-- Front Center Liptint -->
           <div ref="parallax2" class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 -ml-12 mt-12 md:-ml-24 md:mt-24 w-[160px] md:w-[240px] z-30">
             <div ref="liptint2" class="w-full h-full">
-              <img src="/images/products/hero-liptint-2.png" alt="Raecca Lip Tint 2" class="w-full h-auto drop-shadow-2xl" />
+              <img src="/images/products/hero-liptint-2.png" alt="Raecca Lip Tint 2" fetchpriority="high" class="w-full h-auto drop-shadow-2xl" />
             </div>
           </div>
 
           <!-- Front Right Liptint (Bottom Right) -->
           <div ref="parallax3" class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 ml-24 -mt-8 md:ml-32 md:-mt-12 w-[150px] md:w-[220px] z-20 opacity-95">
             <div ref="liptint3" class="w-full h-full rotate-[15deg]">
-              <img src="/images/products/hero-liptint-3.png" alt="Raecca Lip Tint 3" class="w-full h-auto drop-shadow-xl" />
+              <img src="/images/products/hero-liptint-3.png" alt="Raecca Lip Tint 3" fetchpriority="high" class="w-full h-auto drop-shadow-xl" />
             </div>
           </div>
 
