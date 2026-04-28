@@ -14,6 +14,8 @@ export default defineNuxtConfig({
     families: {
       'Cormorant Garamond': [300, 400, 500, 600, 700], // For elegant editorial headings
       'Inter': [300, 400, 500, 600], // For clean body text
+      'Pacifico': [400], // For bubbly script
+      'Fredoka': [500, 600, 700], // For rounded bubbly sans
     },
     display: 'swap',
   },

@@ -3,6 +3,7 @@ import Navbar from '~/components/Navbar.vue'
 import Hero from '~/components/Hero.vue'
 import Editorial from '~/components/Editorial.vue'
 import ShadeSelector from '~/components/ShadeSelector.vue'
+import BundleSection from '~/components/BundleSection.vue'
 import Philosophy from '~/components/Philosophy.vue'
 import GlossyEdit from '~/components/GlossyEdit.vue'
 import BoldSection from '~/components/BoldSection.vue'
@@ -16,6 +17,7 @@ import Footer from '~/components/Footer.vue'
     <Hero />
     <Editorial />
     <ShadeSelector />
+    <BundleSection />
     <Philosophy />
     <GlossyEdit />
     <BoldSection />
