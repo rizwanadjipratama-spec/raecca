@@ -6,6 +6,7 @@ import ShadeSelector from '~/components/ShadeSelector.vue'
 import Philosophy from '~/components/Philosophy.vue'
 import GlossyEdit from '~/components/GlossyEdit.vue'
 import BoldSection from '~/components/BoldSection.vue'
+import FAQ from '~/components/FAQ.vue'
 import Footer from '~/components/Footer.vue'
 </script>
 
@@ -18,6 +19,7 @@ import Footer from '~/components/Footer.vue'
     <Philosophy />
     <GlossyEdit />
     <BoldSection />
+    <FAQ />
     <Footer />
   </main>
 </template>
