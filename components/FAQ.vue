@@ -79,32 +79,33 @@ onMounted(() => {
 </script>
 
 <template>
-  <section ref="sectionRef" class="w-full py-24 md:py-32 bg-brand-cream relative z-10" id="faq">
+  <section ref="sectionRef" class="w-full py-24 md:py-32 bg-[#FFEBFO] relative z-10" id="faq" style="background-color: #FFF0F5;">
     <div class="container mx-auto px-6 max-w-4xl">
       <!-- Section Header -->
       <div class="text-center mb-16 md:mb-24">
-        <h2 class="text-xs tracking-[0.3em] font-semibold uppercase text-brand-pink mb-4">FAQ & Information</h2>
-        <h3 class="text-5xl md:text-7xl font-serif italic text-brand-dark mb-6">Frequently Asked.</h3>
-        <p class="text-brand-text/70 max-w-xl mx-auto text-lg">Segala hal yang perlu kamu ketahui tentang formula ajaib Raecca, koleksi shade pilihan, dan tips perawatan bibir terbaik.</p>
+        <h2 class="text-sm tracking-[0.3em] font-black uppercase text-[#D73562] mb-4 bg-white/60 inline-block px-4 py-1 rounded-full border border-[#FFAEC2]">FAQ & Information</h2>
+        <h3 class="text-5xl md:text-7xl font-serif italic text-[#8A4C65] mb-6">Frequently Asked.</h3>
+        <p class="text-[#A05C7B] max-w-xl mx-auto text-lg font-medium">Segala hal yang perlu kamu ketahui tentang formula ajaib Raecca, koleksi shade pilihan, dan tips perawatan bibir terbaik.</p>
       </div>
 
       <!-- FAQ Accordion -->
-      <div class="space-y-4">
+      <div class="space-y-6">
         <div 
           v-for="(faq, index) in faqs" 
           :key="index"
-          class="faq-item opacity-0 translate-y-8 group bg-white/50 backdrop-blur-sm border border-brand-pink/20 rounded-2xl overflow-hidden transition-all duration-300 hover:border-brand-pink shadow-sm"
+          class="faq-item opacity-0 translate-y-8 group border-2 rounded-[2rem] overflow-hidden transition-all duration-500"
+          :class="openIndex === index ? 'bg-white border-[#FFAEC2] shadow-[0_15px_40px_-10px_rgba(255,174,194,0.6)]' : 'bg-white/40 border-transparent hover:border-[#FFAEC2]/60 hover:bg-white/80'"
         >
           <button 
             @click="toggleFaq(index)"
             class="w-full flex items-center justify-between p-6 md:p-8 text-left focus:outline-none"
           >
-            <h4 class="text-lg md:text-xl font-semibold text-brand-dark pr-8 transition-colors duration-300" :class="{ 'text-brand-pink': openIndex === index }">
+            <h4 class="text-lg md:text-xl font-bold transition-colors duration-300 pr-4" :class="openIndex === index ? 'text-[#D73562]' : 'text-[#A05C7B] group-hover:text-[#D73562]'">
               {{ faq.question }}
             </h4>
-            <div class="flex-shrink-0 w-10 h-10 rounded-full bg-brand-blush flex items-center justify-center text-brand-pink transition-all duration-300" :class="{ 'rotate-180 bg-brand-pink text-white shadow-md': openIndex === index }">
-              <Minus v-if="openIndex === index" :size="20" />
-              <Plus v-else :size="20" />
+            <div class="flex-shrink-0 w-12 h-12 rounded-full flex items-center justify-center transition-all duration-500 shadow-sm" :class="openIndex === index ? 'bg-[#D73562] text-white rotate-180 scale-110 shadow-md' : 'bg-[#FFE8EE] text-[#D73562] group-hover:scale-110 group-hover:bg-[#FFC5D3]'">
+              <Minus v-if="openIndex === index" :size="24" stroke-width="3" />
+              <Plus v-else :size="24" stroke-width="3" />
             </div>
           </button>
           
@@ -114,7 +115,7 @@ onMounted(() => {
             :class="openIndex === index ? 'grid-rows-[1fr] opacity-100' : 'grid-rows-[0fr] opacity-0'"
           >
             <div class="overflow-hidden">
-              <p class="px-6 md:px-8 pb-6 md:pb-8 text-brand-text leading-relaxed text-base md:text-lg">
+              <p class="px-6 md:px-8 pb-8 text-[#8A4C65] leading-relaxed text-base md:text-lg font-medium">
                 {{ faq.answer }}
               </p>
             </div>
