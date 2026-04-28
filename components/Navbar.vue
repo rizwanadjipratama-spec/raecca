@@ -1,8 +1,31 @@
 <script setup lang="ts">
-import { ref, onMounted } from 'vue'
-import { Heart, ShoppingBag, Menu } from 'lucide-vue-next'
+import { ref, onMounted, watch } from 'vue'
+import { Heart, ShoppingBag, Menu, X } from 'lucide-vue-next'
+import { useRoute } from 'vue-router'
 
 const isScrolled = ref(false)
+const isMobileMenuOpen = ref(false)
+const route = useRoute()
+
+const toggleMobileMenu = () => {
+  isMobileMenuOpen.value = !isMobileMenuOpen.value
+  // Prevent body scroll when menu is open
+  if (isMobileMenuOpen.value) {
+    document.body.style.overflow = 'hidden'
+  } else {
+    document.body.style.overflow = ''
+  }
+}
+
+const closeMenu = () => {
+  isMobileMenuOpen.value = false
+  document.body.style.overflow = ''
+}
+
+// Close menu when route changes (e.g., clicking a link)
+watch(route, () => {
+  closeMenu()
+})
 
 onMounted(() => {
   window.addEventListener('scroll', () => {
@@ -15,12 +38,12 @@ onMounted(() => {
   <nav
     :class="[
       'fixed top-0 left-0 w-full z-50 transition-all duration-500 ease-in-out',
-      isScrolled ? 'py-4 glass' : 'py-6 bg-transparent'
+      isScrolled || isMobileMenuOpen ? 'py-4 glass bg-white/70 backdrop-blur-md' : 'py-6 bg-transparent'
     ]"
   >
-    <div class="container mx-auto px-6 md:px-12 flex justify-between items-center">
+    <div class="container mx-auto px-6 md:px-12 flex justify-between items-center relative z-50">
       <!-- Logo -->
-      <NuxtLink to="/" class="text-2xl font-bold tracking-tighter text-brand-pink italic uppercase">
+      <NuxtLink to="/" class="text-2xl font-bold tracking-tighter text-brand-pink italic uppercase" @click="closeMenu">
         Raecca
       </NuxtLink>
 
@@ -44,9 +67,28 @@ onMounted(() => {
             <span class="relative inline-flex rounded-full h-3.5 w-3.5 bg-brand-pink text-[8px] font-bold text-white items-center justify-center">2</span>
           </span>
         </button>
-        <button class="md:hidden hover:text-brand-pink transition-colors">
-          <Menu :size="24" stroke-width="1.5" />
+        <button @click="toggleMobileMenu" class="md:hidden hover:text-brand-pink transition-colors focus:outline-none">
+          <X v-if="isMobileMenuOpen" :size="24" stroke-width="1.5" />
+          <Menu v-else :size="24" stroke-width="1.5" />
         </button>
+      </div>
+    </div>
+
+    <!-- Mobile Menu Overlay -->
+    <div 
+      class="fixed inset-0 bg-[#FFF0F5]/98 backdrop-blur-xl z-40 flex flex-col items-center justify-center transition-all duration-500 ease-in-out md:hidden"
+      :class="isMobileMenuOpen ? 'opacity-100 visible translate-y-0' : 'opacity-0 invisible -translate-y-full'"
+    >
+      <div class="flex flex-col space-y-10 items-center text-xl font-bold tracking-[0.2em] text-[#D73562] uppercase">
+        <NuxtLink @click="closeMenu" to="#collections" class="hover:text-[#A05C7B] transition-colors transform hover:scale-110">Collections</NuxtLink>
+        <NuxtLink @click="closeMenu" to="#the-gloss" class="hover:text-[#A05C7B] transition-colors transform hover:scale-110">The Gloss</NuxtLink>
+        <NuxtLink @click="closeMenu" to="#editorial" class="hover:text-[#A05C7B] transition-colors transform hover:scale-110">Editorial</NuxtLink>
+        <NuxtLink @click="closeMenu" to="#archives" class="hover:text-[#A05C7B] transition-colors transform hover:scale-110">Archives</NuxtLink>
+      </div>
+      
+      <!-- Mobile Extra Info / Decor -->
+      <div class="absolute bottom-12 text-xs font-medium text-[#A05C7B] tracking-widest uppercase">
+        Sweet BUT SHARP.
       </div>
     </div>
   </nav>
