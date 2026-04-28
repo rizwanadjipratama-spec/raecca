@@ -1,15 +1,7 @@
 <script setup lang="ts">
-import { ref, onMounted } from 'vue'
-import gsap from 'gsap'
-import { ScrollTrigger } from 'gsap/ScrollTrigger'
+import { ref } from 'vue'
 import { Plus, Minus } from 'lucide-vue-next'
-import { useHead } from '#imports'
 
-if (process.client) {
-  gsap.registerPlugin(ScrollTrigger)
-}
-
-const sectionRef = ref<HTMLElement | null>(null)
 const openIndex = ref<number | null>(null)
 
 const faqs = [
@@ -34,52 +26,10 @@ const faqs = [
 const toggleFaq = (index: number) => {
   openIndex.value = openIndex.value === index ? null : index
 }
-
-// Generate JSON-LD for SEO Maxxing (Google Rich Snippets)
-const faqSchema = {
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  "mainEntity": faqs.map(faq => ({
-    "@type": "Question",
-    "name": faq.question,
-    "acceptedAnswer": {
-      "@type": "Answer",
-      "text": faq.answer
-    }
-  }))
-}
-
-useHead({
-  script: [
-    {
-      type: 'application/ld+json',
-      innerHTML: JSON.stringify(faqSchema)
-    }
-  ]
-})
-
-onMounted(() => {
-  const ctx = gsap.context(() => {
-    // Animate items IN
-    gsap.to('.faq-item', {
-      y: 0,
-      opacity: 1,
-      duration: 0.8,
-      stagger: 0.15,
-      ease: 'power3.out',
-      scrollTrigger: {
-        trigger: sectionRef.value,
-        start: 'top 80%',
-      }
-    })
-  }, sectionRef.value!)
-
-  return () => ctx.revert()
-})
 </script>
 
 <template>
-  <section ref="sectionRef" class="w-full py-24 md:py-32 bg-[#FFEBFO] relative z-10" id="faq" style="background-color: #FFF0F5;">
+  <section class="w-full py-24 md:py-32 bg-[#FFEBFO] relative z-10" id="faq" style="background-color: #FFF0F5;">
     <div class="container mx-auto px-6 max-w-4xl">
       <!-- Section Header -->
       <div class="text-center mb-16 md:mb-24">
@@ -93,7 +43,7 @@ onMounted(() => {
         <div 
           v-for="(faq, index) in faqs" 
           :key="index"
-          class="faq-item opacity-0 translate-y-8 group border-2 rounded-[2rem] overflow-hidden transition-all duration-500"
+          class="faq-item group border-2 rounded-[2rem] overflow-hidden transition-all duration-500"
           :class="openIndex === index ? 'bg-white border-[#FFAEC2] shadow-[0_15px_40px_-10px_rgba(255,174,194,0.6)]' : 'bg-white/40 border-transparent hover:border-[#FFAEC2]/60 hover:bg-white/80'"
         >
           <button 

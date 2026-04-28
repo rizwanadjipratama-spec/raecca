@@ -4,12 +4,17 @@ import gsap from 'gsap'
 
 const heroContainer = ref<HTMLElement | null>(null)
 
-// Parallax Refs
+// Parallax Refs (For ScrollTrigger)
 const parallax1 = ref<HTMLElement | null>(null)
 const parallax2 = ref<HTMLElement | null>(null)
 const parallax3 = ref<HTMLElement | null>(null)
 
-// Floating Refs
+// Entry Refs (For Initial Load Animation)
+const entry1 = ref<HTMLElement | null>(null)
+const entry2 = ref<HTMLElement | null>(null)
+const entry3 = ref<HTMLElement | null>(null)
+
+// Floating Refs (For Continuous Animation)
 const liptint1 = ref<HTMLElement | null>(null)
 const liptint2 = ref<HTMLElement | null>(null)
 const liptint3 = ref<HTMLElement | null>(null)
@@ -38,7 +43,8 @@ onMounted(() => {
       })
       
       // Animate liptints IN (starts hidden via CSS opacity-0)
-      tl.fromTo([parallax2.value, parallax1.value, parallax3.value], 
+      // We animate the 'entry' wrappers so it doesn't conflict with the 'parallax' wrappers
+      tl.fromTo([entry2.value, entry1.value, entry3.value], 
         { y: 150, rotation: 15, opacity: 0 },
         {
           y: 0,
@@ -120,23 +126,29 @@ onMounted(() => {
         <div class="relative w-full h-[500px] md:h-[600px] flex items-center justify-center -ml-12 md:-ml-32">
           
           <!-- Back Liptint (Top Left) -->
-          <div ref="parallax1" class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 -ml-16 -mt-32 md:-ml-24 md:-mt-48 w-[140px] md:w-[200px] z-10 blur-[1px] opacity-0">
-            <div ref="liptint1" class="w-full h-full rotate-[-15deg]">
-              <img src="/images/products/hero-liptint-1.png" alt="Raecca Lip Tint 1" fetchpriority="high" class="w-full h-auto drop-shadow-xl" />
+          <div ref="entry1" class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 -ml-16 -mt-32 md:-ml-24 md:-mt-48 w-[140px] md:w-[200px] z-10 blur-[1px] opacity-0">
+            <div ref="parallax1" class="w-full h-full">
+              <div ref="liptint1" class="w-full h-full rotate-[-15deg]">
+                <img src="/images/products/hero-liptint-1.png" alt="Raecca Lip Tint 1" fetchpriority="high" class="w-full h-auto drop-shadow-xl" />
+              </div>
             </div>
           </div>
           
           <!-- Front Center Liptint -->
-          <div ref="parallax2" class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 -ml-12 mt-12 md:-ml-24 md:mt-24 w-[160px] md:w-[240px] z-30 opacity-0">
-            <div ref="liptint2" class="w-full h-full">
-              <img src="/images/products/hero-liptint-2.png" alt="Raecca Lip Tint 2" fetchpriority="high" class="w-full h-auto drop-shadow-2xl" />
+          <div ref="entry2" class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 -ml-12 mt-12 md:-ml-24 md:mt-24 w-[160px] md:w-[240px] z-30 opacity-0">
+            <div ref="parallax2" class="w-full h-full">
+              <div ref="liptint2" class="w-full h-full">
+                <img src="/images/products/hero-liptint-2.png" alt="Raecca Lip Tint 2" fetchpriority="high" class="w-full h-auto drop-shadow-2xl" />
+              </div>
             </div>
           </div>
 
           <!-- Front Right Liptint (Bottom Right) -->
-          <div ref="parallax3" class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 ml-24 -mt-8 md:ml-32 md:-mt-12 w-[150px] md:w-[220px] z-20 opacity-0">
-            <div ref="liptint3" class="w-full h-full rotate-[15deg]">
-              <img src="/images/products/hero-liptint-3.png" alt="Raecca Lip Tint 3" fetchpriority="high" class="w-full h-auto drop-shadow-xl" />
+          <div ref="entry3" class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 ml-24 -mt-8 md:ml-32 md:-mt-12 w-[150px] md:w-[220px] z-20 opacity-0">
+            <div ref="parallax3" class="w-full h-full">
+              <div ref="liptint3" class="w-full h-full rotate-[15deg]">
+                <img src="/images/products/hero-liptint-3.png" alt="Raecca Lip Tint 3" fetchpriority="high" class="w-full h-auto drop-shadow-xl" />
+              </div>
             </div>
           </div>
 
