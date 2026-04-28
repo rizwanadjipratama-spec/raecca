@@ -114,7 +114,7 @@ onMounted(() => {
       </div>
 
       <!-- 3D Parallax Products (Right side) -->
-      <div class="w-full md:w-1/2 relative h-[400px] md:h-[700px] mt-16 md:mt-0 flex items-center justify-center pointer-events-none z-20">
+      <div class="w-full md:w-1/2 relative h-[400px] md:h-[700px] mt-4 md:mt-0 flex items-center justify-center pointer-events-none z-20">
         
         <!-- Center Bounding Box for tight grouping -->
         <div class="relative w-full h-[500px] md:h-[600px] flex items-center justify-center -ml-12 md:-ml-32">
