@@ -1,0 +1,54 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --color-background: #FAF8F5;
+    --color-text: #1a1a1a;
+    --color-primary: #D11261;
+    --color-accent: #FFD1DC;
+  }
+
+  body {
+    @apply bg-[#FAF8F5] text-[#1a1a1a] font-sans antialiased overflow-x-hidden selection:bg-[#D11261] selection:text-white;
+  }
+
+  /* Custom Font Setup (Placeholder, to be overridden by Google Fonts) */
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-serif tracking-tight;
+  }
+}
+
+@layer utilities {
+  .text-shadow-sm {
+    text-shadow: 0 1px 2px rgba(0,0,0,0.1);
+  }
+  .text-shadow-md {
+    text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  }
+  .glass {
+    @apply bg-white/30 backdrop-blur-md border border-white/40;
+  }
+}
+
+/* Lenis Recommended CSS */
+html.lenis, html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+.lenis.lenis-scrolling iframe {
+  pointer-events: none;
+}
