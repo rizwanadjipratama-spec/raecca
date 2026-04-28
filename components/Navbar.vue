@@ -74,21 +74,20 @@ onMounted(() => {
       </div>
     </div>
 
-    <!-- Mobile Menu Overlay -->
+    <!-- Mobile Menu Panel -->
     <div 
-      class="fixed inset-0 bg-[#FFF0F5]/98 backdrop-blur-xl z-40 flex flex-col items-center justify-center transition-all duration-500 ease-in-out md:hidden"
-      :class="isMobileMenuOpen ? 'opacity-100 visible translate-y-0' : 'opacity-0 invisible -translate-y-full'"
+      class="absolute top-full left-0 w-full bg-white shadow-[0_20px_40px_-15px_rgba(255,174,194,0.3)] z-40 transition-all duration-500 ease-in-out md:hidden overflow-hidden origin-top border-t border-[#FFEBFO]"
+      :class="isMobileMenuOpen ? 'max-h-[500px] opacity-100' : 'max-h-0 opacity-0'"
     >
-      <div class="flex flex-col space-y-10 items-center text-xl font-bold tracking-[0.2em] text-[#D73562] uppercase">
-        <NuxtLink @click="closeMenu" to="#collections" class="hover:text-[#A05C7B] transition-colors transform hover:scale-110">Collections</NuxtLink>
-        <NuxtLink @click="closeMenu" to="#the-gloss" class="hover:text-[#A05C7B] transition-colors transform hover:scale-110">The Gloss</NuxtLink>
-        <NuxtLink @click="closeMenu" to="#editorial" class="hover:text-[#A05C7B] transition-colors transform hover:scale-110">Editorial</NuxtLink>
-        <NuxtLink @click="closeMenu" to="#archives" class="hover:text-[#A05C7B] transition-colors transform hover:scale-110">Archives</NuxtLink>
-      </div>
-      
-      <!-- Mobile Extra Info / Decor -->
-      <div class="absolute bottom-12 text-xs font-medium text-[#A05C7B] tracking-widest uppercase">
-        Sweet BUT SHARP.
+      <div class="flex flex-col py-8 px-6 space-y-8 bg-[#FFF0F5]/90 backdrop-blur-md items-center text-lg font-bold tracking-[0.2em] text-[#D73562] uppercase">
+        <NuxtLink @click="closeMenu" to="#collections" class="w-full text-center hover:text-[#A05C7B] hover:bg-white/50 py-3 rounded-xl transition-all">Collections</NuxtLink>
+        <NuxtLink @click="closeMenu" to="#the-gloss" class="w-full text-center hover:text-[#A05C7B] hover:bg-white/50 py-3 rounded-xl transition-all">The Gloss</NuxtLink>
+        <NuxtLink @click="closeMenu" to="#editorial" class="w-full text-center hover:text-[#A05C7B] hover:bg-white/50 py-3 rounded-xl transition-all">Editorial</NuxtLink>
+        <NuxtLink @click="closeMenu" to="#archives" class="w-full text-center hover:text-[#A05C7B] hover:bg-white/50 py-3 rounded-xl transition-all">Archives</NuxtLink>
+        
+        <div class="pt-4 mt-4 w-[50px] border-t-2 border-[#FFAEC2]/30 text-center">
+          <span class="text-[10px] text-[#A05C7B]">RAECCA</span>
+        </div>
       </div>
     </div>
   </nav>
