@@ -61,32 +61,7 @@ onMounted(() => {
       gsap.to(liptint2.value, { y: '-=18', rotation: '-=3', duration: 5, repeat: -1, yoyo: true, ease: 'sine.inOut', delay: 0.5 })
       gsap.to(liptint3.value, { y: '-=10', rotation: '-=4', duration: 4.5, repeat: -1, yoyo: true, ease: 'sine.inOut', delay: 1 })
 
-      // Scroll Parallax Animation (applied to outer elements)
-      // Using exact 'y' pixel values instead of 'yPercent' guarantees the parallax 
-      // works flawlessly even if the images haven't fully downloaded and height is 0.
-      gsap.to(parallax1.value, {
-        y: -250,
-        ease: 'none',
-        scrollTrigger: { trigger: heroContainer.value, start: 'top top', end: 'bottom top', scrub: true }
-      })
-      gsap.to(parallax2.value, {
-        y: -150,
-        ease: 'none',
-        scrollTrigger: { trigger: heroContainer.value, start: 'top top', end: 'bottom top', scrub: true }
-      })
-      gsap.to(parallax3.value, {
-        y: -350,
-        ease: 'none',
-        scrollTrigger: { trigger: heroContainer.value, start: 'top top', end: 'bottom top', scrub: true }
-      })
-      
-      // Text Parallax
-      gsap.to(titleContainer.value, {
-        yPercent: 40,
-        opacity: 0,
-        ease: 'none',
-        scrollTrigger: { trigger: heroContainer.value, start: 'top top', end: 'bottom top', scrub: true }
-      })
+      // The continuous floating animations will keep running independently
     }, heroContainer.value!)
 
     return () => ctx.revert()

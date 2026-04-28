@@ -85,8 +85,10 @@ onMounted(() => {
         <NuxtLink @click="closeMenu" to="#editorial" class="w-full text-center hover:text-[#A05C7B] hover:bg-white/50 py-3 rounded-xl transition-all">Editorial</NuxtLink>
         <NuxtLink @click="closeMenu" to="#archives" class="w-full text-center hover:text-[#A05C7B] hover:bg-white/50 py-3 rounded-xl transition-all">Archives</NuxtLink>
         
-        <div class="pt-4 mt-4 w-[50px] border-t-2 border-[#FFAEC2]/30 text-center">
-          <span class="text-[10px] text-[#A05C7B]">RAECCA</span>
+        <div class="pt-6 mt-4 flex w-full justify-center">
+          <div class="border-t-2 border-[#FFAEC2]/30 pt-6 px-12 text-center flex justify-center items-center">
+            <span class="text-xs tracking-[0.3em] font-black text-[#A05C7B]">RAECCA</span>
+          </div>
         </div>
       </div>
     </div>
