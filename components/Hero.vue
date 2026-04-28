@@ -110,7 +110,7 @@ onMounted(() => {
           </div>
           
           <!-- Front Center Liptint -->
-          <div ref="entry2" class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 -ml-12 mt-12 md:-ml-24 md:mt-24 w-[160px] md:w-[240px] z-30 opacity-0">
+          <div ref="entry2" class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 -ml-12 mt-4 md:-ml-24 md:mt-12 w-[160px] md:w-[240px] z-30 opacity-0">
             <div ref="parallax2" class="w-full h-full">
               <div ref="liptint2" class="w-full h-full">
                 <img src="/images/products/hero-liptint-2.png" alt="Raecca Lip Tint 2" fetchpriority="high" class="w-full h-auto drop-shadow-2xl" />
